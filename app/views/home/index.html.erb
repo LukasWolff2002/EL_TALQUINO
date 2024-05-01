@@ -1,0 +1,11 @@
+<!-- app/views/home/index.html.erb -->
+<h1>Bienvenido al Sistema</h1>
+<p>Este es tu panel de inicio.</p>
+
+<% if current_user %>
+  <h1>Bienvenido, <%= current_user.username %></h1>
+  <p>Este es tu panel de inicio personalizado.</p>
+<% else %>
+  <h1>Bienvenido</h1>
+  <p>Por favor <a href="<%= login_path %>">inicia sesión</a> o <a href="<%= signup_path %>">regístrate</a>.</p>
+<% end %>
