@@ -27,9 +27,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_181111) do
   end
 
   create_table "cart_products", force: :cascade do |t|
-    t.bigint "cart_id"
-    t.bigint "product_id"
-    t.integer "quantity"
+    t.bigint "cart_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity", default: 0
+    t.decimal "subtotal", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_cart_products_on_cart_id"
@@ -46,7 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_181111) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.decimal "price", precision: 8, scale: 2
+    t.decimal "price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

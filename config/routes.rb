@@ -15,5 +15,11 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
 
+  post '/add_to_cart', to: 'carts#add_product', as: :add_to_cart
+  post 'add_product_to_cart', to: 'carts#add_product', as: :add_product_to_cart
+
+
   resources :users
+  resources :carts, only: [:show]  # Esto generará la ruta para 'show' que incluye `cart_path`
+
 end

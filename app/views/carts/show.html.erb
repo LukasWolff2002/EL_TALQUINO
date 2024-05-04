@@ -1,0 +1,9 @@
+<h1>Carrito de Compras</h1>
+
+<ul>
+  <% @cart.cart_products.each do |item| %>
+    <li><%= item.product.name %> - Cantidad: <%= item.quantity %>, Subtotal: <%= item.subtotal %></li>
+  <% end %>
+</ul>
+
+<p>Total: <%= @cart.total_price %></p>

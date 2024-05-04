@@ -9,3 +9,24 @@
   <h1>Bienvenido</h1>
   <p>Por favor <a href="<%= login_path %>">inicia sesión</a> o <a href="<%= signup_path %>">regístrate</a>.</p>
 <% end %>
+
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= product.name %>
+      <%= form_with url: add_to_cart_path, method: :post, local: true do |form| %>
+        <%= form.number_field :quantity, value: 1, min: 1, class: 'quantity-input' %>
+        <%= form.hidden_field :product_id, value: product.id %>
+        <%= form.submit 'Agregar al Carrito', class: 'btn btn-success' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @current_cart %>
+  <%= link_to 'Ver Carrito', cart_path(@current_cart), class: 'btn btn-primary' %>
+<% else %>
+  <p>Carrito no disponible.</p>
+<% end %>
+
+

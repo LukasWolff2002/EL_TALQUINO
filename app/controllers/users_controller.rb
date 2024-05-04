@@ -4,13 +4,15 @@ class UsersController < ApplicationController
     end
     
     def create
-        @user = User.new(user_params)
-        if @user.save
-          session[:user_id] = @user.id
-          redirect_to home_path, notice: 'Usuario creado exitosamente.'
-        else
-          render :new
-        end
+      @user = User.new(user_params)
+      if @user.save
+        # Crear carrito después de guardar el usuario
+        @cart = Cart.create(user_id: @user.id)
+        session[:cart_id] = @cart.id
+        redirect_to home_path, notice: "Usuario creado exitosamente y carrito iniciado."
+      else
+        render :new
+      end
     end
 
     private

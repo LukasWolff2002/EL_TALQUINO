@@ -1,3 +1,10 @@
 <h1>Bienvenido a la Aplicación</h1>
+
+<ul>
+    <% @products.each do |product|%>
+    <li><%= product.name%> | <%= link_to 'Agregar al Carrito', login_path %></li> <!--Ya que le doy editar a cada author -->
+    <% end %>
+</ul>
+
 <p>Para continuar, por favor ingresa a tu cuenta o registra una nueva.</p>
 <%= link_to 'Ingresar', login_path, class: 'btn btn-primary' %>
